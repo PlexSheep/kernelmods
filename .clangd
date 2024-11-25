@@ -1,0 +1,5 @@
+CompileFlags: # Tweak the parse settings
+Add: -I=[${workspaceFolder}/**]
+     -I=[${workspaceFolder}/lib/Inc]
+     -I=[/lib/modules/6.1.0-26-amd64/source/include/**]
+     -I=[/lib/modules/6.1.0-26-amd64/build/include/**]
