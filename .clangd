@@ -1,5 +1,37 @@
-CompileFlags: # Tweak the parse settings
-Add: -I=[${workspaceFolder}/**]
-     -I=[${workspaceFolder}/lib/Inc]
-     -I=[/lib/modules/6.1.0-26-amd64/source/include/**]
-     -I=[/lib/modules/6.1.0-26-amd64/build/include/**]
+CompileFlags:
+  Add: 
+    - "-Wall"
+    - "-Wundef"
+    - "-Werror=strict-prototypes"
+    - "-Wno-trigraphs"
+    - "-fno-strict-aliasing"
+    - "-fno-common"
+    - "-fshort-wchar"
+    - "-std=gnu89"
+    - "-I/usr/src/linux-headers-6.1.0-26-amd64/include"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/include"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/arch/x86/include"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/arch/x86/include/generated"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/arch/x86/include/uapi"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/arch/x86/include/generated/uapi"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/include/uapi"
+    - "-I/usr/src/linux-headers-6.1.0-26-common/include/generated/uapi"
+    - "-include/usr/src/linux-headers-6.1.0-26-common/include/linux/kconfig.h"
+    - "-include/usr/src/linux-headers-6.1.0-26-common/include/linux/compiler_types.h"
+    - "-D__KERNEL__"
+    - "-DCONFIG_64BIT"
+    - "-DCONFIG_X86_64"
+    - "-DCONFIG_X86"
+
+Index:
+  Background: Build
+  StandardLibrary: No
+
+Diagnostics:
+  UnusedIncludes: Strict
+  ClangTidy:
+    Add: 
+      - kernel-*
+      - performance-*
+    Remove: 
+      - clang-analyzer-security.insecureAPI.strcpy
